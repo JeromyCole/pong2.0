@@ -10,6 +10,9 @@ Player B:
 UP - 8
 DOWN - 2
 
+Ball speed:
+If ball speed is too slow/fast, adjust on lines 42 and 43 the variables balldx and balldy.
+
 Updates Coming:
 
 -Winner screen after X wins
