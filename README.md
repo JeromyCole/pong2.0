@@ -13,10 +13,10 @@ UP - '8'
 DOWN - '2'
 --------------------------------------------------------------------------------------------------
 Ball speed:
-If ball speed is too slow/fast, adjust on lines 42 and 43 the variables ball.dx and ball.dy.
+If ball speed is too slow/fast, adjust on lines 41 and 42 the variables ball.dx and ball.dy.
 
 Number of rounds until game completion
-Lines 109 and 122 control how many rounds are needed to complete game. Currently set for 3 rounds. Output of winner sent to console.
+Lines 119 and 143 control how many rounds are needed to complete game. Currently set for 3 rounds. Output of winner sent to console.
 ---------------------------------------------------------------------------------------------------
 Updates Added:
 -Colored paddles that when player scores turn ball into their paddle's color.

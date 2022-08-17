@@ -1,7 +1,7 @@
 # Pong
 
-import turtle
 import time
+import turtle
 
 wn = turtle.Screen()
 wn.title("Pong by Jeromy")
@@ -83,23 +83,25 @@ wn.onkey(paddle_b_up, "8")
 wn.onkey(paddle_b_down, "2")
 
 ### Main game loop
-
 while True:
     wn.update()
     # Move the ball
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
 
-
     #Border checking
+       #Top border
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
 
+       #Bottom border
     if ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
 
+    #Scoring and events triggered by a score
+       #Ball passes paddle on right - Player A scored, ball changes to their color, point added, speed adjusted
     if ball.xcor() > 395:
         ball.setx(0)
         ball.dx *= -1
@@ -123,6 +125,7 @@ while True:
             time.sleep(5)
             break
 
+       #Ball passes paddle on left - Player B scored, ball changes to their color, point added, speed adjusted
     if ball.xcor() < -395:
         ball.setx(0)
         ball.dx *= -1
@@ -146,12 +149,13 @@ while True:
             time.sleep(5)
             break
 
-    #Paddle and ball collisions
+    #Paddles and ball collisions
        #Player A
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() -40):
         ball.dx *= -1
         ball.dx *= 1.14
         ball.sety(ball.ycor() + ball.dy + 5)
+
        #Player B
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() -40):
         ball.setx(340)
@@ -165,6 +169,7 @@ while True:
         paddle_a.sety(245)
     if (paddle_a.ycor() < -242):
         paddle_a.sety(-242)
+
         #Player B
     if (paddle_b.ycor() > 245):
         paddle_b.sety(245)
