@@ -2,6 +2,7 @@
 
 import time
 import turtle
+import keyboard
 
 wn = turtle.Screen()
 wn.title("Pong by Jeromy")
@@ -53,12 +54,12 @@ pen.write("Player A : 0  Player B : 0", align="center", font=("courier", 24, "no
 # Paddle A functions
 def paddle_a_up():
     y = paddle_a.ycor()
-    y += 25.5
+    y += 25.8
     paddle_a.sety(y)
 
 def paddle_a_down():
     y = paddle_a.ycor()
-    y += -25.5
+    y += -25.8
     paddle_a.sety(y)
 
 # Paddle A keyboard binding while True:
@@ -69,12 +70,12 @@ wn.onkey(paddle_a_down, "s")
 # Paddle B functions
 def paddle_b_up():
     y = paddle_b.ycor()
-    y += 25.5
+    y += 25.8
     paddle_b.sety(y)
 
 def paddle_b_down():
     y = paddle_b.ycor()
-    y += -25.5
+    y += -25.8
     paddle_b.sety(y)
 
 # Paddle B keyboard binding while True:
@@ -84,10 +85,10 @@ wn.onkey(paddle_b_down, "2")
 
 ### Main game loop
 while True:
-    wn.update()
-    # Move the ball
+        # Move the ball
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
+    wn.update()
 
     #Border checking
        #Top border
@@ -121,8 +122,9 @@ while True:
             wn.clear()
             wn.bgcolor("red")
             pen.goto(0, 160)
-            pen.write("Player A Wins with {} points!" .format(score_a), align="center", font=("lato", 26, "normal"))
-            time.sleep(5)
+            pen.write("Player A Wins with {} points!" .format(score_a), align="center", font=("lato", 32, "normal"))
+            print("Player A Wins with {} points!" .format(score_a))
+            time.sleep(3)
             break
 
        #Ball passes paddle on left - Player B scored, ball changes to their color, point added, speed adjusted
@@ -139,26 +141,30 @@ while True:
         pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("courier", 24, "normal"))
         time.sleep(.1)
         wn.bgcolor("black")
+        #Change ball direction so goes away from Player B's score <----
+        ball.dx = -0.11
+        ball.dy = 0.12
         #Finish game after X rounds and output Player B as winner
         if score_b > 2:
             pen.clear()
             wn.clear()
             wn.bgcolor("orange")
             pen.goto(0, 160)
-            pen.write("Player B Wins with {} points!" .format(score_b), align="center", font=("lato", 26, "normal"))
-            time.sleep(5)
+            pen.write("Player B Wins with {} points!" .format(score_b), align="center", font=("lato", 32, "normal"))
+            print("Player B Wins with {} points!" .format(score_b))
+            time.sleep(3)
             break
 
     #Paddles and ball collisions
        #Player A
-    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() -40):
+    if (ball.xcor() < -330 and ball.xcor() > -340) and (ball.ycor() < paddle_a.ycor() + 55 and ball.ycor() > paddle_a.ycor() -55):
         ball.dx *= -1
         ball.dx *= 1.14
         ball.sety(ball.ycor() + ball.dy + 5)
 
        #Player B
-    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() -40):
-        ball.setx(340)
+    if (ball.xcor() > 330 and ball.xcor() < 340) and (ball.ycor() < paddle_b.ycor() + 55 and ball.ycor() > paddle_b.ycor() -55):
+        ball.setx(330)
         ball.dx *= -1
         ball.dx *= 1.14
         ball.sety(ball.ycor() + ball.dy + 5)
