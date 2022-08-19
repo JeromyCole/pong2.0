@@ -48,4 +48,4 @@ Updates Coming:
 -Paddle size increases when score point?
 
 
-This is a simple (tutorial based) Turtle run Pong game that has been improved upon in areas. 
+This is a common Turtle run Pong game that's been remixed and been improved upon in someareas. 
