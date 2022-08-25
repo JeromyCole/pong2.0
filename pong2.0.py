@@ -45,8 +45,8 @@ ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.11
-ball.dy = -0.12
+ball.dx = 0.39  # <--zcontrol-a1-- Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed
+ball.dy = -0.36 # <--zcontrol-a2-- Ball's UP/DOWN, VERTICAL, Y AXIS speed
 
 #Pen
 pen = turtle.Turtle()
@@ -56,6 +56,19 @@ pen.penup()
 pen.hideturtle()
 pen.goto(0, 260)
 pen.write("Player A : 0  Player B : 0", align="center", font=("courier", 24, "normal"))
+
+#Center court line
+center_court = turtle.Turtle()
+center_court.width(2)
+center_court.color("white")
+center_court.hideturtle()
+point1 = (0, 400)
+point2 = (0, -400)
+center_court.penup()
+center_court.goto(point1)
+center_court.pendown()
+center_court.goto(point2)
+
 
 # Paddle A functions
 def paddle_a_up():
@@ -70,8 +83,10 @@ def paddle_a_down():
 
 # Paddle A keyboard binding while True:
 wn.listen()
-wn.onkeypress(paddle_a_up, "w")
-wn.onkeypress(paddle_a_down, "s")
+wn.onkeypress(paddle_a_up, "w") # <--zcontrol-a7-- Player A's paddle move UP
+wn.onkeypress(paddle_a_up, "W") # <--zcontrol-a7-- Player A's paddle move UP
+wn.onkeypress(paddle_a_down, "s") # <--zcontrol-a8-- Player A's paddle move DOWN
+wn.onkeypress(paddle_a_down, "S") # <--zcontrol-a8-- Player A's paddle move DOWN
 
 # Paddle B functions
 def paddle_b_up():
@@ -86,8 +101,8 @@ def paddle_b_down():
 
 # Paddle B keyboard binding while True:
 wn.listen()
-wn.onkeypress(paddle_b_up, "Up")
-wn.onkeypress(paddle_b_down, "Down")
+wn.onkeypress(paddle_b_up, "Up") # <--zcontrol-a9-- Player B's paddle move UP
+wn.onkeypress(paddle_b_down, "Down") # <--zcontrol-b1-- Player B's paddle move DOWN
 
 ### Main game loop
 while True:
@@ -118,19 +133,37 @@ while True:
     ball.sety(ball.ycor() + ball.dy)
     wn.update()
 
+    if ball.ycor() > -500 or ball.y < 500:
+        point1 = (0, 400)
+        point2 = (0, -400)
+
     #Border checking
-       #Top border
+       #Stop ball from going off screen vertically
+       #Top border for ball
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
 
-       #Bottom border
+       #Bottom border for ball
     if ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
 
+        #Stop paddles from going off screen
+        #Player A's paddle border
+    if (paddle_a.ycor() > 245):
+        paddle_a.sety(245)
+    if (paddle_a.ycor() < -242):
+        paddle_a.sety(-242)
+
+        #Player B's paddle border
+    if (paddle_b.ycor() > 245):
+        paddle_b.sety(245)
+    if (paddle_b.ycor() < -242):
+        paddle_b.sety(-242)
+
     #Scoring and events triggered by a score
-       #Ball passes paddle on right - Player A scored, ball changes to their color, point added, speed adjusted
+       #Ball passes paddle on right - Player A scored, ball changes to their color, point added, speed adjusted, screen flash (IF scored 3 times then winner screen is shown)
     if ball.xcor() > 395:
         ball.setx(0)
         ball.dx *= -1
@@ -141,13 +174,13 @@ while True:
         pen.clear()
         ball.shapesize(stretch_wid=1, stretch_len=1)
         #Reset ball speed if Player A scores
-        ball.dx = 0.19
-        ball.dy = 0.16
+        ball.dy = 0.36 # <--zcontrol-a3-- Ball's UP/DOWN, VERTICAL, Y AXIS speed
+        ball.dx = 0.39 # <--zcontrol-a4-- Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed
         pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("courier", 24, "normal"))
         time.sleep(.1)
         wn.bgcolor("black")
         #Finish game after X rounds and output Player A as winner
-        if score_a > 2:
+        if score_a > 2: # <--zcontrol-b2-- Finish game after X rounds and output Player A as winner ***Default --- score_b > 2:
             pen.clear()
             wn.clear()
             wn.bgcolor("red")
@@ -162,7 +195,7 @@ while True:
             time.sleep(3)
             break
 
-    #Ball passes paddle on left - Player B scored, ball changes to their color, point added, speed adjusted
+    #Ball passes paddle on left - Player B scored, ball changes to their color, point added, speed adjusted, screen flash (IF scored 3 times then winner screen is shown)
     if ball.xcor() < -395:
         ball.setx(0)
         ball.dx *= -1
@@ -173,16 +206,13 @@ while True:
         pen.clear()
         ball.shapesize(stretch_wid=1, stretch_len=1)
         #Reset ball speed if Player B scores
-        ball.dx = 0.19
-        ball.dy = 0.16
+        ball.dy = 0.36 # <--zcontrol-a5-- Ball's UP/DOWN, VERTICAL, Y AXIS speed
+        ball.dx = -0.39 # <--zcontrol-a6--Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed and changes ball direction after Player B scores so goes away from Player B's goal (***Keep negative (-) value for fair ball serving***) (or don't)
         pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("courier", 24, "normal"))
         time.sleep(.1)
         wn.bgcolor("black")
-        #Change ball direction so goes away from Player B's score <----
-        ball.dx = -0.11
-        ball.dy = 0.12
-        #Finish game after X rounds and output Player B as winner
-        if score_b > 2:
+
+        if score_b > 2: # <--zcontrol-b3-- Finish game after X rounds and output Player B as winner ***Default --- score_b > 2:
             print(time.time())
             time.sleep(.14)
             pen.clear()
@@ -222,6 +252,8 @@ while True:
             ball.color("red")
         #Nuclear Super attack
         if keyboard.is_pressed('Space'):
+            ball.setheading(0)
+            ball.shape("triangle")
             ball.dy = 1.9
             ball.dx = 1.3
             ball.shape("triangle")
@@ -267,6 +299,7 @@ while True:
             ball.color("red")
         #Nuclear Super attack
         if keyboard.is_pressed('0'):
+            ball.setheading(60)
             ball.shape("triangle")
             ball.dy = 1.9
             ball.dx = -1.3
@@ -288,16 +321,3 @@ while True:
             ball.dy = -.11
         if rand < 2:
             ball.dy = .11
-
-    #Stop paddles from going off screen
-       #Player A
-    if (paddle_a.ycor() > 245):
-        paddle_a.sety(245)
-    if (paddle_a.ycor() < -242):
-        paddle_a.sety(-242)
-
-        #Player B
-    if (paddle_b.ycor() > 245):
-        paddle_b.sety(245)
-    if (paddle_b.ycor() < -242):
-        paddle_b.sety(-242)
