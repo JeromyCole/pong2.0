@@ -254,6 +254,7 @@ while True:
         if keyboard.is_pressed('Space'):
             ball.setheading(0)
             ball.shape("triangle")
+            ball.color("red")
             ball.dy = 1.9
             ball.dx = 1.3
             ball.shape("triangle")
@@ -301,6 +302,7 @@ while True:
         if keyboard.is_pressed('0'):
             ball.setheading(60)
             ball.shape("triangle")
+            ball.color("orange")
             ball.dy = 1.9
             ball.dx = -1.3
             ball.shapesize(stretch_wid=4, stretch_len=4)
