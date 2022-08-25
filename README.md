@@ -11,25 +11,25 @@ Special Attack - 'Space' (Only works when you hit the key exactly when the ball 
 
 Player B:
 
-Up - '8'
-Down - '2'
-Special Attack - '0' (Only works when you hit the key exactly when the ball hit the paddle)
+Up - '8' <br />
+Down - '2' <br />
+Special Attack - '0' (Only works when you hit the key exactly when the ball hit the paddle) <br />
 
-zcontrol (Find code with CTRL+F or COMMAND-F using relevant "zcontrol-xx" code below):
+zcontrol (Find code with CTRL+F or COMMAND-F using relevant "zcontrol-xx" code below): <br />
 
-Locate Pong controls via Find/Search:
-zcontrol-a1  (Ball speed y axis)  ***Default = .36
-zcontrol-a2  (Ball speed x axis)  ***Default = .39
-zcontrol-a3  (Ball speed y axis reset after Player A scores)  ***Default = .36
-zcontrol-a4  (Ball speed x axis reset after Player A scores)  ***Default = .39
-zcontrol-a5  (Ball speed y axis reset after Player B scores)  ***Default = .36
-zcontrol-a6  (Ball speed x axis reset after Player B scores)  ***Default = .39
-zcontrol-a7  (Player A move paddle UP)
-zcontrol-a8  (Player A move paddle DOWN)
-zcontrol-a9  (Player B move paddle UP)
-zcontrol-b1  (Player B move paddle DOWN)
-zcontrol-b2  (Round limit for Player A to win) ***Default = 3
-zcontrol-b3  (Round limit for Player B to win) ***Default = 3
+Locate Pong controls via Find/Search: <br />
+zcontrol-a1  (Ball speed y axis)  ***Default = .36 <br />
+zcontrol-a2  (Ball speed x axis)  ***Default = .39 <br />
+zcontrol-a3  (Ball speed y axis reset after Player A scores)  ***Default = .36 <br />
+zcontrol-a4  (Ball speed x axis reset after Player A scores)  ***Default = .39 <br />
+zcontrol-a5  (Ball speed y axis reset after Player B scores)  ***Default = .36 <br />
+zcontrol-a6  (Ball speed x axis reset after Player B scores)  ***Default = .39 <br />
+zcontrol-a7  (Player A move paddle UP) <br />
+zcontrol-a8  (Player A move paddle DOWN) <br />
+zcontrol-a9  (Player B move paddle UP) <br />
+zcontrol-b1  (Player B move paddle DOWN) <br />
+zcontrol-b2  (Round limit for Player A to win) ***Default = 3 <br />
+zcontrol-b3  (Round limit for Player B to win) ***Default = 3 <br />
 
 Ball speed:
 If ball speed is too slow/fast, adjust declarations of variables ball.dx and ball.dy as needed:
