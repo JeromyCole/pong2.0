@@ -18,19 +18,19 @@ Special Attack - '0' (Only works when you hit the key exactly when the ball hit 
 ### All "adjustable" aspects of the game have commented code you can find quickly via ctrl+f or cmd+f and search for the below code. Example: zcontrol-a1
 
 Locate Pong controls via Find/Search: <br />
-Change speed:
+#### Change speed:
 zcontrol-a1  (Ball speed y axis)  ***Default = .36 <br />
 zcontrol-a2  (Ball speed x axis)  ***Default = .39 <br />
 zcontrol-a3  (Ball speed y axis reset after Player A scores)  ***Default = .36 <br />
 zcontrol-a4  (Ball speed x axis reset after Player A scores)  ***Default = .39 <br />
 zcontrol-a5  (Ball speed y axis reset after Player B scores)  ***Default = .36 <br />
 zcontrol-a6  (Ball speed x axis reset after Player B scores)  ***Default = .39 <br />
-Paddle controls:
+#### Paddle controls:
 zcontrol-a7  (Player A move paddle UP) <br />
 zcontrol-a8  (Player A move paddle DOWN) <br />
 zcontrol-a9  (Player B move paddle UP) <br />
 zcontrol-b1  (Player B move paddle DOWN) <br />
-Round limit:
+#### Round limit:
 zcontrol-b2  (Round limit for Player A to win) ***Default = 3 <br />
 zcontrol-b3  (Round limit for Player B to win) ***Default = 3 <br />
 
