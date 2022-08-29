@@ -73,12 +73,12 @@ center_court.goto(point2)
 # Paddle A functions
 def paddle_a_up():
     y = paddle_a.ycor()
-    y += 39.8
+    y += 42.8
     paddle_a.sety(y)
 
 def paddle_a_down():
     y = paddle_a.ycor()
-    y += -39.8
+    y += -42.8
     paddle_a.sety(y)
 
 # Paddle A keyboard binding while True:
@@ -91,12 +91,12 @@ wn.onkeypress(paddle_a_down, "S") # <--zcontrol-a8-- Player A's paddle move DOWN
 # Paddle B functions
 def paddle_b_up():
     y = paddle_b.ycor()
-    y += 39.8
+    y += 42.8
     paddle_b.sety(y)
 
 def paddle_b_down():
-    y = paddle_b.ycor()
-    y += -39.8
+    y = paddle_b.ycor() 
+    y += -42.8
     paddle_b.sety(y)
 
 # Paddle B keyboard binding while True:
@@ -104,7 +104,6 @@ wn.listen()
 wn.onkeypress(paddle_b_up, "Up") # <--zcontrol-a9-- Player B's paddle move UP
 wn.onkeypress(paddle_b_down, "Down") # <--zcontrol-b1-- Player B's paddle move DOWN
 
-### Main game loop
 while True:
 
     #Startup screen -- Countdown and gameplay window prep
@@ -228,6 +227,12 @@ while True:
             time.sleep(3)
             break
 
+    #eset ball bounce effect
+    if (ball.shape() == "circle" and ball.xcor() < 300 and ball.xcor() > -300): # Normal ball bounce
+        ball.shapesize(stretch_wid=1, stretch_len=1)
+    if (ball.shape() == "triangle" and ball.xcor() < 210 and ball.xcor() > -210): # Nuclear attack ball bounce
+        ball.shapesize(stretch_wid=4, stretch_len=4)
+
     #Paddles and ball collisions
        #Player A
     if (ball.xcor() < -330 and ball.xcor() > -340) and (ball.ycor() < paddle_a.ycor() + 55 and ball.ycor() > paddle_a.ycor() -55):
@@ -235,6 +240,7 @@ while True:
         ball.dx *= 1.14
         ball.sety(ball.ycor() + ball.dy + 5)
         a_collisions += 1
+        ball.shapesize(stretch_wid=1, stretch_len=.5)  # Squish ball/Bounce effect when hits paddle
         #Random "Super attack"
         rand = random.randrange(0, 15) # 1/15 chance - Update both player's rand variables for fair gameplay. (or don't)
         if rand < 2:
@@ -253,12 +259,11 @@ while True:
         #Nuclear Super attack
         if keyboard.is_pressed('Space'):
             ball.setheading(0)
-            ball.shape("triangle")
             ball.color("red")
             ball.dy = 1.9
             ball.dx = 1.3
-            ball.shape("triangle")
-            ball.shapesize(stretch_wid=4, stretch_len=4)
+            ball.shape("triangle")           
+            ball.shapesize(stretch_wid=2, stretch_len=4)  # Squish ball/Bounce effect when hits paddle
             wn.bgcolor("white")
             time.sleep(.1)
             wn.bgcolor("red")
@@ -283,12 +288,13 @@ while True:
         ball.dx *= 1.14
         ball.sety(ball.ycor() + ball.dy + 5)
         b_collisions += 1
+        ball.shapesize(stretch_wid=1, stretch_len=.5)  # Squish ball/Bounce effect when hits paddle
         #Auto Super attack
         rand = random.randrange(0, 15) # 1/15 chance - Update both player's rand variables for fair gameplay. (or don't)
         if rand < 2:
             wn.bgcolor("white")
             time.sleep(.1)
-            wn.bgcolor("red")
+            wn.bgcolor("orange")
             time.sleep(.1)
             wn.bgcolor("white")
             time.sleep(.1)
@@ -300,12 +306,13 @@ while True:
             ball.color("red")
         #Nuclear Super attack
         if keyboard.is_pressed('0'):
-            ball.setheading(60)
+            ball.setheading(180)
             ball.shape("triangle")
             ball.color("orange")
             ball.dy = 1.9
             ball.dx = -1.3
-            ball.shapesize(stretch_wid=4, stretch_len=4)
+            ball.shape("triangle")
+            ball.shapesize(stretch_wid=2, stretch_len=4) # Squish ball/Bounce effect when hits paddle
             wn.bgcolor("white")
             time.sleep(.1)
             wn.bgcolor("orange")
@@ -320,6 +327,6 @@ while True:
         #When ball collides with paddle, ball's y axis is random
         rand = random.randrange(0, 3)
         if rand < 2:
-            ball.dy = -.11
-        if rand < 2:
-            ball.dy = .11
+            ball.dy *= -1.7
+        if rand > 2:
+            ball.dy *= 1.6
