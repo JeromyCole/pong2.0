@@ -15,7 +15,7 @@ Up - '8' <br />
 Down - '2' <br />
 Special Attack - '0' (Only works when you hit the key exactly when the ball hit the paddle) <br />
 
-###All "adjustable" aspects of the game have commented code you can find quickly via ctrl+f or cmd+f and search for the below code. Example: zcontrol-a1
+### All "adjustable" aspects of the game have commented code you can find quickly via ctrl+f or cmd+f and search for the below code. Example: zcontrol-a1
 
 Locate Pong controls via Find/Search: <br />
 Change speed:
@@ -48,7 +48,7 @@ Number of rounds until game completion <br />
 Using ctrl+f/cmd+f search for the commented "zcontrol-b2" and "zcontrol-b3" in the program. Currently set for 3 rounds. Output of winner displayed on screen as well as sent to console.
 
 
-##Updates Added: <br />
+## Updates Added: <br />
 
 -Super attack (Player can automatically return the ball chaotically) - Current odds of cast are 1/15 <br />
 
