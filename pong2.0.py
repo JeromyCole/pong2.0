@@ -235,7 +235,7 @@ while True:
 
     #Paddles and ball collisions
        #Player A
-    if (ball.xcor() < -330 and ball.xcor() > -340) and (ball.ycor() < paddle_a.ycor() + 55 and ball.ycor() > paddle_a.ycor() -55):
+    if (ball.xcor() < -330 and ball.xcor() > -340) and (ball.ycor() < paddle_a.ycor() + 59 and ball.ycor() > paddle_a.ycor() -59):
         ball.dx *= -1
         ball.dx *= 1.14
         ball.sety(ball.ycor() + ball.dy + 5)
@@ -282,7 +282,7 @@ while True:
             ball.dy = .11
 
        #Player B
-    if (ball.xcor() > 330 and ball.xcor() < 340) and (ball.ycor() < paddle_b.ycor() + 55 and ball.ycor() > paddle_b.ycor() -55):
+    if (ball.xcor() > 330 and ball.xcor() < 340) and (ball.ycor() < paddle_b.ycor() + 59 and ball.ycor() > paddle_b.ycor() -59):
         ball.setx(330)
         ball.dx *= -1
         ball.dx *= 1.14
