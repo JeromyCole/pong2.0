@@ -60,6 +60,8 @@ Using ctrl+f/cmd+f search for the commented "zcontrol-b2" and "zcontrol-b3" in t
 
 -Ball now momentarily squishes when it hits a paddle
 
+-Ball wobbles when moving through air
+
 -Paddle collision counter
 
 -Colored paddles that when player scores turn ball into their paddle's color
@@ -76,7 +78,11 @@ X-Stop paddles from going off the screen
 
 -Progressively increased speed upon ball hit (*Recycled code someone else came up with)
 
-X-Nuclear attack has additional effect where its changes size when deployed and hit afterward if in succession
+-Nuclear attack has additional effect where its changes size when deployed and hit afterward if in succession
+
+-Sound effects added for nuclear attacks
+
+-Sound effect added for game finish
 
 Updates Coming:
 
@@ -87,4 +93,5 @@ Updates Coming:
 
 -Give option to choose screen color (along with screen size) lay on white screen (instead of black)
 
-*This is a common Turtle run Pong game that's been heavily remixed and improved upon in some areas*
+*This is the common Turtle run Pong game that's been heavily remixed and improved upon in some areas*
+*Sounds from Zapsplat.com*

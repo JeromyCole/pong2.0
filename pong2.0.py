@@ -4,6 +4,7 @@ import time
 import turtle
 import keyboard
 import random
+from playsound import playsound
 
 #Window specs & info
 wn = turtle.Screen()
@@ -183,6 +184,7 @@ while True:
             pen.clear()
             wn.clear()
             wn.bgcolor("red")
+            playsound('sounds/game_finish.mp3', block=False)
             pen.goto(0, 160)
             pen.goto(0, 160)
             pen.write("Player A Wins with:" .format(score_a, a_collisions), align="center", font=("lato", 32, "normal"))
@@ -210,13 +212,13 @@ while True:
         pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("courier", 24, "normal"))
         time.sleep(.1)
         wn.bgcolor("black")
-
+        #Finish game after X rounds and output Player B as winner
         if score_b > 2: # <--zcontrol-b3-- Finish game after X rounds and output Player B as winner ***Default --- score_b > 2:
-            print(time.time())
             time.sleep(.14)
             pen.clear()
             wn.clear()
             wn.bgcolor("orange")
+            playsound('sounds/game_finish.mp3', block=False)
             pen.goto(0, 160)
             pen.write("Player B Wins with:" .format(score_b, b_collisions), align="center", font=("lato", 32, "normal"))
             pen.goto(0, 100)
@@ -227,10 +229,46 @@ while True:
             time.sleep(3)
             break
 
-    #eset ball bounce effect
-    if (ball.shape() == "circle" and ball.xcor() < 300 and ball.xcor() > -300): # Normal ball bounce
+    #Reset ball bounce effects
+    #Add bounce and speed effects to ball
+        #Thinnest shape
+    if (ball.shape() == "circle" and ball.xcor() < 300 and ball.xcor() > -300):
+        ball.shapesize(stretch_wid=.8, stretch_len=.9)
+    if (ball.shape() == "triangle" and ball.xcor() < 210 and ball.xcor() > -210):
+        ball.shapesize(stretch_wid=4, stretch_len=2)
+
+        #Regaining shape 1/6
+    if (ball.shape() == "circle" and ball.xcor() < 200 and ball.xcor() > -200):
+        ball.shapesize(stretch_wid=.56, stretch_len=1)
+
+        #Regaining shape 2/6
+    if (ball.shape() == "circle" and ball.xcor() < 190 and ball.xcor() > -200):
+        ball.shapesize(stretch_wid=.60, stretch_len=1)
+
+        #Regaining shape 3/6
+    if (ball.shape() == "circle" and ball.xcor() < 190 and ball.xcor() > -200):
+        ball.shapesize(stretch_wid=.64, stretch_len=1)
+
+        #Regaining shape 4/6
+    if (ball.shape() == "circle" and ball.xcor() < 180 and ball.xcor() > -200):
+        ball.shapesize(stretch_wid=.67, stretch_len=1)
+
+        #Regaining shape 5/6
+    if (ball.shape() == "circle" and ball.xcor() < 160 and ball.xcor() > -160):
+        ball.shapesize(stretch_wid=.70, stretch_len=1)
+
+        #Regaining shape 6/6
+    if (ball.shape() == "circle" and ball.xcor() < 125 and ball.xcor() > -125):
+        ball.shapesize(stretch_wid=.73, stretch_len=1)
+
+        #Regaining shape 7/7
+    if (ball.shape() == "circle" and ball.xcor() < 125 and ball.xcor() > -125):
+        ball.shapesize(stretch_wid=.86, stretch_len=1)
+
+        #Back to full size and shape
+    if (ball.shape() == "circle" and ball.xcor() < 80 and ball.xcor() > -80):
         ball.shapesize(stretch_wid=1, stretch_len=1)
-    if (ball.shape() == "triangle" and ball.xcor() < 210 and ball.xcor() > -210): # Nuclear attack ball bounce
+    if (ball.shape() == "triangle" and ball.xcor() < 210 and ball.xcor() > -210): # Nuclear attack ball bounce finish
         ball.shapesize(stretch_wid=4, stretch_len=4)
 
     #Paddles and ball collisions
@@ -238,8 +276,10 @@ while True:
     if (ball.xcor() < -330 and ball.xcor() > -340) and (ball.ycor() < paddle_a.ycor() + 59 and ball.ycor() > paddle_a.ycor() -59):
         ball.dx *= -1
         ball.dx *= 1.14
+        ball.dy *= -1.3
         ball.sety(ball.ycor() + ball.dy + 5)
         a_collisions += 1
+        playsound('sounds/player_a_hit.mp3', block=False)
         ball.shapesize(stretch_wid=1, stretch_len=.5)  # Squish ball/Bounce effect when hits paddle
         #Random "Super attack"
         rand = random.randrange(0, 15) # 1/15 chance - Update both player's rand variables for fair gameplay. (or don't)
@@ -258,11 +298,13 @@ while True:
             ball.color("red")
         #Nuclear Super attack
         if keyboard.is_pressed('Space'):
+            playsound('sounds/pre_attack.mp3', block=False)
+            playsound('sounds/nuclear_attack.mp3', block=False)
+            ball.dy = 1.9
+            ball.dx = -1.3
             ball.setheading(0)
             ball.color("red")
-            ball.dy = 1.9
-            ball.dx = 1.3
-            ball.shape("triangle")           
+            ball.shape("triangle")     
             ball.shapesize(stretch_wid=2, stretch_len=4)  # Squish ball/Bounce effect when hits paddle
             wn.bgcolor("white")
             time.sleep(.1)
@@ -288,6 +330,7 @@ while True:
         ball.dx *= 1.14
         ball.sety(ball.ycor() + ball.dy + 5)
         b_collisions += 1
+        playsound('sounds/player_b_hit.mp3', block=False)
         ball.shapesize(stretch_wid=1, stretch_len=.5)  # Squish ball/Bounce effect when hits paddle
         #Auto Super attack
         rand = random.randrange(0, 15) # 1/15 chance - Update both player's rand variables for fair gameplay. (or don't)
@@ -306,11 +349,13 @@ while True:
             ball.color("red")
         #Nuclear Super attack
         if keyboard.is_pressed('0'):
+            playsound('sounds/pre_attack.mp3', block=False)
+            playsound('sounds/nuclear_attack.mp3', block=False)
+            ball.dy = 1.9
+            ball.dx = -1.3
             ball.setheading(180)
             ball.shape("triangle")
             ball.color("orange")
-            ball.dy = 1.9
-            ball.dx = -1.3
             ball.shape("triangle")
             ball.shapesize(stretch_wid=2, stretch_len=4) # Squish ball/Bounce effect when hits paddle
             wn.bgcolor("white")
@@ -329,4 +374,4 @@ while True:
         if rand < 2:
             ball.dy *= -1.7
         if rand > 2:
-            ball.dy *= 1.6
+            ball.dy *= 1.7
