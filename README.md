@@ -1,6 +1,4 @@
-# Pong 2.0
-
-WARNING: FLASHING LIGHTS
+# Pong 2.0 (Warning: Flashing lights)
 
 ## Controls
 ### Player A:
@@ -86,7 +84,7 @@ Using ctrl+f/cmd+f search for the commented "zcontrol-b2" and "zcontrol-b3" in t
 
 Updates Coming:
 
--Power ups: Randomly or condition generated items that if touched with paddle will either hurt or help player. Such as paddle  size reduction/enhancement, multi paddle, multi ball that doesn't return to hurt sender.
+-Power ups: Randomly or condition generated items that if touched with paddle will either hurt or help player. Such as paddle   size reduction/enhancement, multi paddle, multi ball that doesn't return to hurt sender.
  and more.
 
 -Give option for different window sizes. Maybe 1 60% larger and another at a large 16:9 ratio. All elements would need pushed out to new positions, adjust target areas, add option to startup screen (before countdown) to choose screen size.
