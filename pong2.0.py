@@ -301,8 +301,8 @@ while True:
         if keyboard.is_pressed('Space'):
             playsound('sounds/pre_attack.mp3', block=False)
             playsound('sounds/nuclear_attack.mp3', block=False)
-            ball.dy = 1.9
-            ball.dx = -1.3
+            ball.dy = 2.9
+            ball.dx = -2.3
             ball.setheading(0)
             ball.color("red")
             ball.shape("triangle")     
@@ -320,9 +320,9 @@ while True:
         #When ball collides with paddle, ball's y axis is random
         rand = random.randrange(0, 2)
         if rand < 2:
-            ball.dy = -.11
+            ball.dy = -.61
         if rand < 1:
-            ball.dy = .11
+            ball.dy = .46
 
        #Player B
     if (ball.xcor() > 330 and ball.xcor() < 340) and (ball.ycor() < paddle_b.ycor() + 59 and ball.ycor() > paddle_b.ycor() -59):
