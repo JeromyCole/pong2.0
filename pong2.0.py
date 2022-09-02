@@ -7,7 +7,6 @@ import random
 from playsound import playsound
 import pickle
 
-
 #Window specs & info
 wn = turtle.Screen()
 wn.title("Pong Remixed")
