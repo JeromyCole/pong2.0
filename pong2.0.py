@@ -5,6 +5,8 @@ import turtle
 import keyboard
 import random
 from playsound import playsound
+import pickle
+
 
 #Window specs & info
 wn = turtle.Screen()
@@ -21,7 +23,7 @@ score_b = 0
 a_collisions = 0
 b_collisions = 0
 
-# Paddle A
+#Paddle A
 paddle_a = turtle.Turtle()
 paddle_a.speed(0)
 paddle_a.shape("square")
@@ -30,7 +32,7 @@ paddle_a.shapesize(stretch_wid=5, stretch_len=1)
 paddle_a.penup()
 paddle_a.goto(-350, 0)
 
-# Paddle B
+#Paddle B
 paddle_b = turtle.Turtle()
 paddle_b.speed(0)
 paddle_b.shape("square")
@@ -39,7 +41,7 @@ paddle_b.shapesize(stretch_wid=5, stretch_len=1)
 paddle_b.penup()
 paddle_b.goto(350, 0)
 
-# Ball
+#Ball
 ball = turtle.Turtle()
 ball.speed(0)
 ball.shape("circle")
@@ -71,7 +73,7 @@ center_court.pendown()
 center_court.goto(point2)
 
 
-# Paddle A functions
+#Paddle A functions
 def paddle_a_up():
     y = paddle_a.ycor()
     y += 42.8
@@ -82,14 +84,14 @@ def paddle_a_down():
     y += -42.8
     paddle_a.sety(y)
 
-# Paddle A keyboard binding while True:
+#Paddle A keyboard binding while True:
 wn.listen()
 wn.onkeypress(paddle_a_up, "w") # <--zcontrol-a7-- Player A's paddle move UP
 wn.onkeypress(paddle_a_up, "W") # <--zcontrol-a7-- Player A's paddle move UP
 wn.onkeypress(paddle_a_down, "s") # <--zcontrol-a8-- Player A's paddle move DOWN
 wn.onkeypress(paddle_a_down, "S") # <--zcontrol-a8-- Player A's paddle move DOWN
 
-# Paddle B functions
+#Paddle B functions
 def paddle_b_up():
     y = paddle_b.ycor()
     y += 42.8
@@ -100,7 +102,7 @@ def paddle_b_down():
     y += -42.8
     paddle_b.sety(y)
 
-# Paddle B keyboard binding while True:
+#Paddle B keyboard binding while True:
 wn.listen()
 wn.onkeypress(paddle_b_up, "Up") # <--zcontrol-a9-- Player B's paddle move UP
 wn.onkeypress(paddle_b_down, "Down") # <--zcontrol-b1-- Player B's paddle move DOWN
@@ -128,7 +130,7 @@ while True:
         pen.goto(0, 260)
         pen.write("Player A: 0  Player B: 0", align="center", font=("courier", 24, "normal"))
 
-    # Move the ball
+    #Move the ball
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
     wn.update()
@@ -268,7 +270,7 @@ while True:
         #Back to full size and shape
     if (ball.shape() == "circle" and ball.xcor() < 80 and ball.xcor() > -80):
         ball.shapesize(stretch_wid=1, stretch_len=1)
-    if (ball.shape() == "triangle" and ball.xcor() < 210 and ball.xcor() > -210): # Nuclear attack ball bounce finish
+    if (ball.shape() == "triangle" and ball.xcor() < 210 and ball.xcor() > -210): #Nuclear attack ball bounce finish
         ball.shapesize(stretch_wid=4, stretch_len=4)
 
     #Paddles and ball collisions
@@ -280,9 +282,9 @@ while True:
         ball.sety(ball.ycor() + ball.dy + 5)
         a_collisions += 1
         playsound('sounds/player_a_hit.mp3', block=False)
-        ball.shapesize(stretch_wid=1, stretch_len=.5)  # Squish ball/Bounce effect when hits paddle
+        ball.shapesize(stretch_wid=1, stretch_len=.5)  #Squish ball/Bounce effect when hits paddle
         #Random "Super attack"
-        rand = random.randrange(0, 15) # 1/15 chance - Update both player's rand variables for fair gameplay. (or don't)
+        rand = random.randrange(0, 15) #1/15 chance - Update both player's rand variables for fair gameplay. (or don't)
         if rand < 2:
             wn.bgcolor("white")
             time.sleep(.1)
@@ -305,7 +307,7 @@ while True:
             ball.setheading(0)
             ball.color("red")
             ball.shape("triangle")     
-            ball.shapesize(stretch_wid=2, stretch_len=4)  # Squish ball/Bounce effect when hits paddle
+            ball.shapesize(stretch_wid=2, stretch_len=4)  #Squish ball/Bounce effect when hits paddle
             wn.bgcolor("white")
             time.sleep(.1)
             wn.bgcolor("red")
@@ -331,9 +333,9 @@ while True:
         ball.sety(ball.ycor() + ball.dy + 5)
         b_collisions += 1
         playsound('sounds/player_b_hit.mp3', block=False)
-        ball.shapesize(stretch_wid=1, stretch_len=.5)  # Squish ball/Bounce effect when hits paddle
+        ball.shapesize(stretch_wid=1, stretch_len=.5)  #Squish ball/Bounce effect when hits paddle
         #Auto Super attack
-        rand = random.randrange(0, 15) # 1/15 chance - Update both player's rand variables for fair gameplay. (or don't)
+        rand = random.randrange(0, 15) #1/15 chance - Update both player's rand variables for fair gameplay. (or don't)
         if rand < 2:
             wn.bgcolor("white")
             time.sleep(.1)
@@ -357,7 +359,7 @@ while True:
             ball.shape("triangle")
             ball.color("orange")
             ball.shape("triangle")
-            ball.shapesize(stretch_wid=2, stretch_len=4) # Squish ball/Bounce effect when hits paddle
+            ball.shapesize(stretch_wid=2, stretch_len=4) #Squish ball/Bounce effect when hits paddle
             wn.bgcolor("white")
             time.sleep(.1)
             wn.bgcolor("orange")

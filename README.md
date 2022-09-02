@@ -70,9 +70,9 @@ Using ctrl+f/cmd+f search for the commented "zcontrol-b2" and "zcontrol-b3" in t
 
 -Reset ball speed to starting speed after each round
 
-X-Flash screen with player's color when scored
+-Flash screen with player's color when scored
 
-X-Stop paddles from going off the screen
+-Stop paddles from going off the screen
 
 -Fixed paddle collisions where ball collides with paddle incorrectly
 
@@ -93,5 +93,5 @@ Updates Coming:
 
 -Give option to choose screen color (along with screen size) lay on white screen (instead of black)
 
-*This is the common Turtle run Pong game that's been heavily remixed and improved upon in some areas*
+*Turtle run Pong game that's been heavily remixed and improved upon in some areas*
 *Sounds from Zapsplat.com*
