@@ -276,7 +276,7 @@ while True:
        #Player A
     if (ball.xcor() < -330 and ball.xcor() > -340) and (ball.ycor() < paddle_a.ycor() + 59 and ball.ycor() > paddle_a.ycor() -59):
         ball.dx *= -1
-        ball.dx *= 1.14
+        ball.dx *= 1.19
         ball.dy *= -1.3
         ball.sety(ball.ycor() + ball.dy + 5)
         a_collisions += 1
@@ -301,8 +301,8 @@ while True:
         if keyboard.is_pressed('Space'):
             playsound('sounds/pre_attack.mp3', block=False)
             playsound('sounds/nuclear_attack.mp3', block=False)
-            ball.dy = 2.9
-            ball.dx = -2.3
+            ball.dy = 20.9
+            ball.dx = 3.9
             ball.setheading(0)
             ball.color("red")
             ball.shape("triangle")     
@@ -320,15 +320,15 @@ while True:
         #When ball collides with paddle, ball's y axis is random
         rand = random.randrange(0, 2)
         if rand < 2:
-            ball.dy = -.61
+            ball.dy = 0.45
         if rand < 1:
-            ball.dy = .46
+            ball.dy = 0.45
 
        #Player B
     if (ball.xcor() > 330 and ball.xcor() < 340) and (ball.ycor() < paddle_b.ycor() + 59 and ball.ycor() > paddle_b.ycor() -59):
         ball.setx(330)
         ball.dx *= -1
-        ball.dx *= 1.14
+        ball.dx *= 1.19
         ball.sety(ball.ycor() + ball.dy + 5)
         b_collisions += 1
         playsound('sounds/player_b_hit.mp3', block=False)
@@ -352,8 +352,8 @@ while True:
         if keyboard.is_pressed('0'):
             playsound('sounds/pre_attack.mp3', block=False)
             playsound('sounds/nuclear_attack.mp3', block=False)
-            ball.dy = 1.9
-            ball.dx = -1.3
+            ball.dy = 3.9
+            ball.dx = -3.3
             ball.setheading(180)
             ball.shape("triangle")
             ball.color("orange")
@@ -373,6 +373,6 @@ while True:
         #When ball collides with paddle, ball's y axis is random
         rand = random.randrange(0, 3)
         if rand < 2:
-            ball.dy *= -1.7
+            ball.dy *= 0.45
         if rand > 2:
-            ball.dy *= 1.7
+            ball.dy *= 0.45
