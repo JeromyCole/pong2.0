@@ -1,11 +1,12 @@
 # Pong Remixed
+#Python 3
 
 import time
 import turtle
 import keyboard
 import random
-from playsound import playsound
 import pickle
+from playsound import playsound
 
 #Window specs & info
 wn = turtle.Screen()
@@ -47,8 +48,12 @@ ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.39  # <--zcontrol-a1-- Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed
-ball.dy = -0.36 # <--zcontrol-a2-- Ball's UP/DOWN, VERTICAL, Y AXIS speed
+ball.dx = 0.40  # <--zcontrol-a1-- Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed
+ball.dy = -0.35 # <--zcontrol-a2-- Ball's UP/DOWN, VERTICAL, Y AXIS speed
+ball_reset_dy = .35  # <--zcontrol-a3-- (Reset) Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed
+ball_reset_dx_player_a = .35  # <--zcontrol-a4-- (Reset Player A) Ball's UP/DOWN, VERTICAL, Y AXIS speed
+ball_reset_dx_player_b = -.35  # <--zcontrol-a5-- (Reset Player B) Ball's UP/DOWN, VERTICAL, Y AXIS speed ***Negative so if Player score it goes toward other player's goal
+
 
 #Pen
 pen = turtle.Turtle()
@@ -85,10 +90,10 @@ def paddle_a_down():
 
 #Paddle A keyboard binding while True:
 wn.listen()
-wn.onkeypress(paddle_a_up, "w") # <--zcontrol-a7-- Player A's paddle move UP
-wn.onkeypress(paddle_a_up, "W") # <--zcontrol-a7-- Player A's paddle move UP
-wn.onkeypress(paddle_a_down, "s") # <--zcontrol-a8-- Player A's paddle move DOWN
-wn.onkeypress(paddle_a_down, "S") # <--zcontrol-a8-- Player A's paddle move DOWN
+wn.onkeypress(paddle_a_up, "w") # <--zcontrol-a6-- Player A's paddle move UP
+wn.onkeypress(paddle_a_up, "W") # <--zcontrol-a6-- Player A's paddle move UP
+wn.onkeypress(paddle_a_down, "s") # <--zcontrol-a7-- Player A's paddle move DOWN
+wn.onkeypress(paddle_a_down, "S") # <--zcontrol-a7-- Player A's paddle move DOWN
 
 #Paddle B functions
 def paddle_b_up():
@@ -103,8 +108,8 @@ def paddle_b_down():
 
 #Paddle B keyboard binding while True:
 wn.listen()
-wn.onkeypress(paddle_b_up, "Up") # <--zcontrol-a9-- Player B's paddle move UP
-wn.onkeypress(paddle_b_down, "Down") # <--zcontrol-b1-- Player B's paddle move DOWN
+wn.onkeypress(paddle_b_up, "Up") # <--zcontrol-a8-- Player B's paddle move UP
+wn.onkeypress(paddle_b_down, "Down") # <--zcontrol-a9-- Player B's paddle move DOWN
 
 while True:
 
@@ -175,13 +180,13 @@ while True:
         pen.clear()
         ball.shapesize(stretch_wid=1, stretch_len=1)
         #Reset ball speed if Player A scores
-        ball.dy = 0.36 # <--zcontrol-a3-- Ball's UP/DOWN, VERTICAL, Y AXIS speed
-        ball.dx = 0.39 # <--zcontrol-a4-- Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed
+        ball.dy = ball_reset_dy
+        ball.dx = ball_reset_dx_player_a # <--zcontrol-a4-- Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed
         pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("courier", 24, "normal"))
         time.sleep(.1)
         wn.bgcolor("black")
         #Finish game after X rounds and output Player A as winner
-        if score_a > 2: # <--zcontrol-b2-- Finish game after X rounds and output Player A as winner ***Default --- score_b > 2:
+        if score_a > 2: # <--zcontrol-b1-- Finish game after X rounds and output Player A as winner ***Default --- score_b > 2:
             pen.clear()
             wn.clear()
             wn.bgcolor("red")
@@ -208,13 +213,13 @@ while True:
         pen.clear()
         ball.shapesize(stretch_wid=1, stretch_len=1)
         #Reset ball speed if Player B scores
-        ball.dy = 0.36 # <--zcontrol-a5-- Ball's UP/DOWN, VERTICAL, Y AXIS speed
-        ball.dx = -0.39 # <--zcontrol-a6--Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed and changes ball direction after Player B scores so goes away from Player B's goal (***Keep negative (-) value for fair ball serving***) (or don't)
+        ball.dy = ball_reset_dy
+        ball.dx = ball_reset_dx_player_b
         pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("courier", 24, "normal"))
         time.sleep(.1)
         wn.bgcolor("black")
         #Finish game after X rounds and output Player B as winner
-        if score_b > 2: # <--zcontrol-b3-- Finish game after X rounds and output Player B as winner ***Default --- score_b > 2:
+        if score_b > 2: # <--zcontrol-b2-- Finish game after X rounds and output Player B as winner ***Default --- score_b > 2:
             time.sleep(.14)
             pen.clear()
             wn.clear()
@@ -283,7 +288,7 @@ while True:
         playsound('sounds/player_a_hit.mp3', block=False)
         ball.shapesize(stretch_wid=1, stretch_len=.5)  #Squish ball/Bounce effect when hits paddle
         #Random "Super attack"
-        rand = random.randrange(0, 15) #1/15 chance - Update both player's rand variables for fair gameplay. (or don't)
+        rand = random.randrange(0, 15) #1/15 chance - Update both player's rand variables for fair gameplay.
         if rand < 2:
             wn.bgcolor("white")
             time.sleep(.1)
@@ -301,7 +306,8 @@ while True:
         if keyboard.is_pressed('Space'):
             playsound('sounds/pre_attack.mp3', block=False)
             playsound('sounds/nuclear_attack.mp3', block=False)
-            ball.dy = 20.9
+            ball.dy = ball_reset_dy
+            ball.dy = 20
             ball.dx = 3.9
             ball.setheading(0)
             ball.color("red")
@@ -317,6 +323,7 @@ while True:
             time.sleep(.2)
             wn.bgcolor("black")
             time.sleep(.1)
+            print(ball.dy)#######################BUG WHY NOT AFFECTING Y AXIS FOR NUCLEAR ATTACK? It's getting value...
         #When ball collides with paddle, ball's y axis is random
         rand = random.randrange(0, 2)
         if rand < 2:

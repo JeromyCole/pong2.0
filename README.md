@@ -17,34 +17,37 @@ Special Attack - '0' (Only works when you hit the key exactly when the ball hit 
 
 Locate Pong controls via Find/Search: <br />
 #### Change speed:
-zcontrol-a1  (Ball speed y axis)  ***Default = .36 <br />
-zcontrol-a2  (Ball speed x axis)  ***Default = .39 <br />
-zcontrol-a3  (Ball speed y axis reset after Player A scores)  ***Default = .36 <br />
-zcontrol-a4  (Ball speed x axis reset after Player A scores)  ***Default = .39 <br />
-zcontrol-a5  (Ball speed y axis reset after Player B scores)  ***Default = .36 <br />
-zcontrol-a6  (Ball speed x axis reset after Player B scores)  ***Default = .39 <br />
+zcontrol-a1  (Ball speed Y axis)
+***Default = .36 <br />
+zcontrol-a2  (Ball speed X axis)
+***Default = .39 <br />
+zcontrol-a3  (Ball speed X axis reset speed reset after any player scores)  
+***Default = .39 <br />
+zcontrol-a4  (Ball speed Y axis speed reset for Player A) 
+***Default = .39 <br />
+zcontrol-a5  (Ball speed Y speed axis reset for Player B && Reverses ball direction when Player B scores)  
+***Default = -.39 <br />
+
 #### Paddle controls:
-zcontrol-a7  (Player A move paddle UP) <br />
-zcontrol-a8  (Player A move paddle DOWN) <br />
-zcontrol-a9  (Player B move paddle UP) <br />
-zcontrol-b1  (Player B move paddle DOWN) <br />
+zcontrol-a6  (Player A move paddle UP) <br />
+zcontrol-a7  (Player A move paddle DOWN) <br />
+zcontrol-a8  (Player B move paddle UP) <br />
+zcontrol-a9  (Player B move paddle DOWN) <br />
 #### Round limit:
-zcontrol-b2  (Round limit for Player A to win) ***Default = 3 <br />
-zcontrol-b3  (Round limit for Player B to win) ***Default = 3 <br />
+zcontrol-b1  (Round limit for Player A to win) ***Default = 3 <br />
+zcontrol-b2  (Round limit for Player B to win) ***Default = 3 <br />
 
 Ball speed:
-If ball speed is too slow/fast, adjust declarations of variables ball.dx and ball.dy as needed: <br />
-Find and adjust all (6) variables via ctrl+f or command-f: <br />
+If ball speed is too slow/fast, adjust declarations of variables as needed.
+Find and adjust all (5) variables via ctrl+f or command-f: <br/>
 zcontrol-a1 <br />
 zcontrol-a2  <br />
 zcontrol-a3 <br />
 zcontrol-a4 <br />
 zcontrol-a5 <br />
-zcontrol-a6 <br />
 
 Number of rounds until game completion <br />
 Using ctrl+f/cmd+f search for the commented "zcontrol-b2" and "zcontrol-b3" in the program. Currently set for 3 rounds. Output of winner displayed on screen as well as sent to console.
-
 
 ## Updates Added: <br />
 
@@ -85,11 +88,12 @@ Using ctrl+f/cmd+f search for the commented "zcontrol-b2" and "zcontrol-b3" in t
 Updates Coming:
 
 -Power ups: Randomly or condition generated items that if touched with paddle will either hurt or help player. Such as paddle   size reduction/enhancement, multi paddle, multi ball that doesn't return to hurt sender.
- and more.
 
 -Give option for different window sizes. Maybe 1 60% larger and another at a large 16:9 ratio. All elements would need pushed out to new positions, adjust target areas, add option to startup screen (before countdown) to choose screen size.
 
--Give option to choose screen color (along with screen size) lay on white screen (instead of black)
+-Give option to choose screen color (along with screen size) lay on white screen (instead of black).
+
+-Add serialization for keeping count of wins in separate file.
 
 *Turtle run Pong game that's been heavily remixed and improved upon in some areas*
 *Sounds from Zapsplat.com*
