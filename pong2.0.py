@@ -114,7 +114,7 @@ wn.onkeypress(paddle_b_down, "Down") # <--zcontrol-a9-- Player B's paddle move D
 while True:
 
     #Startup screen -- Countdown and gameplay window prep
-    if ball.ycor() == 0: # <---- Probably not best but hasn't broke yet (once additional colision physics are added, could cause bug from the coordinates)
+    if ball.ycor() == 0: # <---- Probably not best but hasn't broke yet (if additional colision physics are added, could cause bug from the coordinates)
         pen.goto(0, 0)
         pen.clear()
         pen.write("3", align="center", font=("lato", 95, "normal"))
@@ -133,6 +133,14 @@ while True:
         pen.color('white')
         pen.goto(0, 260)
         pen.write("Player A: 0  Player B: 0", align="center", font=("courier", 24, "normal"))
+        #Random ball direction at startup
+        rand = random.randrange(0, 2)
+        if rand < 2:
+            ball.dy = 0.45
+            ball.dx = 0.45
+        if rand < 1:
+            ball.dy = -0.45
+            ball.dx = -0.45
 
     #Move the ball
     ball.setx(ball.xcor() + ball.dx)
@@ -221,13 +229,13 @@ while True:
             pickle_out_a.close()
             print(player_a_scores)
             pen.goto(0, -20)
-            pen.write("Player A has won {} time(s) " .format(player_a_scores), align="center", font=("lato", 32, "normal"))
+            pen.write("Player A total wins: {}" .format(player_a_scores), align="center", font=("lato", 32, "normal"))
             pen.goto(0, -80)
-            pen.write("Player B has won {} time(s) " .format(player_b_scores), align="center", font=("lato", 32, "normal"))
+            pen.write("Player B total wins: {}" .format(player_b_scores), align="center", font=("lato", 32, "normal"))
             time.sleep(3)
             break
 
-    #Ball passes paddle on left - Player B scored, ball changes to their color, point added, speed adjusted, screen flash (IF scored 3 times then winner screen is shown)
+    #Ball passes paddle on left - Player B scored, ball changes to their color, point added, speed adjusted. If score 3 times then winner screen is shown, and winner point sent to player's PICKLE file to keep lifetime count.
     if ball.xcor() < -395:
         ball.setx(0)
         ball.dx *= -1
@@ -253,7 +261,7 @@ while True:
             pen.goto(0, 220)
             pen.write("Player B Wins!" .format(score_b, b_collisions), align="center", font=("lato", 32, "normal"))
             pen.goto(0, 120)
-            pen.write("with {} hit(s) " .format(b_collisions), align="center", font=("lato", 32, "normal"))
+            pen.write("With {} hit(s) " .format(b_collisions), align="center", font=("lato", 32, "normal"))
             print("Player B Wins with {} points and {} collisions" .format(score_b, b_collisions)) 
             #Keep count of games won
             player_a_scores_exists = path.exists("player_a_scores.pickle")          
@@ -280,51 +288,44 @@ while True:
             pickle_out_b.close()
             print(player_b_scores)
             pen.goto(0, -20)
-            pen.write("Player A has won {} time(s) " .format(player_a_scores), align="center", font=("lato", 32, "normal"))
+            pen.write("Player A total wins: {}" .format(player_a_scores), align="center", font=("lato", 32, "normal"))
             pen.goto(0, -80)
-            pen.write("Player B has won {} time(s) " .format(player_b_scores), align="center", font=("lato", 32, "normal"))
+            pen.write("Player B total wins: {}" .format(player_b_scores), align="center", font=("lato", 32, "normal"))
             time.sleep(3)
             break
 
     #Reset ball bounce effects
     #Add bounce and speed effects to ball
-        #Thinnest shape
+        #Thinnest shape 1/10
     if (ball.shape() == "circle" and ball.xcor() < 300 and ball.xcor() > -300):
         ball.shapesize(stretch_wid=.8, stretch_len=.9)
     if (ball.shape() == "triangle" and ball.xcor() < 210 and ball.xcor() > -210):
         ball.shapesize(stretch_wid=4, stretch_len=2)
-
-        #Regaining shape 1/6
+        #Regaining shape 2/10
     if (ball.shape() == "circle" and ball.xcor() < 200 and ball.xcor() > -200):
         ball.shapesize(stretch_wid=.56, stretch_len=1)
-
-        #Regaining shape 2/6
+        #Regaining shape 3/10
     if (ball.shape() == "circle" and ball.xcor() < 190 and ball.xcor() > -200):
         ball.shapesize(stretch_wid=.60, stretch_len=1)
-
-        #Regaining shape 3/6
+        #Regaining shape 4/10
     if (ball.shape() == "circle" and ball.xcor() < 190 and ball.xcor() > -200):
         ball.shapesize(stretch_wid=.64, stretch_len=1)
-
-        #Regaining shape 4/6
+        #Regaining shape 5/10
     if (ball.shape() == "circle" and ball.xcor() < 180 and ball.xcor() > -200):
         ball.shapesize(stretch_wid=.67, stretch_len=1)
-
-        #Regaining shape 5/6
+        #Regaining shape 6/10
     if (ball.shape() == "circle" and ball.xcor() < 160 and ball.xcor() > -160):
         ball.shapesize(stretch_wid=.70, stretch_len=1)
-
-        #Regaining shape 6/6
+        #Regaining shape 7/10
     if (ball.shape() == "circle" and ball.xcor() < 125 and ball.xcor() > -125):
         ball.shapesize(stretch_wid=.73, stretch_len=1)
-
-        #Regaining shape 7/7
+        #Regaining shape 8/10
     if (ball.shape() == "circle" and ball.xcor() < 125 and ball.xcor() > -125):
         ball.shapesize(stretch_wid=.86, stretch_len=1)
-
-        #Back to full size and shape
+        #Regaining shape 9/10
     if (ball.shape() == "circle" and ball.xcor() < 80 and ball.xcor() > -80):
         ball.shapesize(stretch_wid=1, stretch_len=1)
+        #Back to full size and shape 10/10
     if (ball.shape() == "triangle" and ball.xcor() < 210 and ball.xcor() > -210): #Nuclear attack ball bounce finish
         ball.shapesize(stretch_wid=4, stretch_len=4)
 
@@ -432,4 +433,4 @@ while True:
         if rand < 2:
             ball.dy *= 0.45
         if rand > 2:
-            ball.dy *= 0.45
+            ball.dy *= -0.45
