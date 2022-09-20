@@ -323,7 +323,6 @@ while True:
             time.sleep(.2)
             wn.bgcolor("black")
             time.sleep(.1)
-            print(ball.dy)#######################BUG WHY NOT AFFECTING Y AXIS FOR NUCLEAR ATTACK? It's getting value...
         #When ball collides with paddle, ball's y axis is random
         rand = random.randrange(0, 2)
         if rand < 2:
