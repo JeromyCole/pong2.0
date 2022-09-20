@@ -197,22 +197,28 @@ while True:
             pen.write("With {} hits " .format(a_collisions), align="center", font=("lato", 32, "normal"))
             print("Player A Wins with {} points and {} collisions" .format(score_a, a_collisions))
             #Keep count of games won
-            player_a_scores_exists = path.exists("player_a_scores.pickle")
+            player_a_scores_exists = path.exists("player_a_scores.pickle")          
             if not player_a_scores_exists:
-                pickle_out = open("player_a_scores.pickle","wb")
+                pickle_out_a = open("player_a_scores.pickle","wb")
                 player_a_scores = 0
-                pickle.dump(player_a_scores,pickle_out)
-                pickle_out.close()
+                pickle.dump(player_a_scores,pickle_out_a)
+                pickle_out_a.close()
+            player_b_scores_exists = path.exists("player_b_scores.pickle")
+            if not player_b_scores_exists:
+                pickle_out_b = open("player_b_scores.pickle","wb")
+                player_b_scores = 0
+                pickle.dump(player_b_scores,pickle_out_b)
+                pickle_out_b.close()
             #Bring in Player B's score for final game stats
-            pickle_in_b = open("player_b_scores.pickle","rb")            
+            pickle_in_b = open("player_b_scores.pickle","rb")
             player_b_scores = pickle.load(pickle_in_b)
             #Increment++ game wins by 1 for Player A            
             pickle_in_a = open("player_a_scores.pickle","rb")
             player_a_scores = pickle.load(pickle_in_a)
             player_a_scores += 1
-            pickle_out = open("player_a_scores.pickle","wb")
-            pickle.dump(player_a_scores,pickle_out)
-            pickle_out.close()
+            pickle_out_a = open("player_a_scores.pickle","wb")
+            pickle.dump(player_a_scores,pickle_out_a)
+            pickle_out_a.close()
             print(player_a_scores)
             pen.goto(0, -20)
             pen.write("Player A has won {} time(s) " .format(player_a_scores), align="center", font=("lato", 32, "normal"))
@@ -250,6 +256,12 @@ while True:
             pen.write("with {} hit(s) " .format(b_collisions), align="center", font=("lato", 32, "normal"))
             print("Player B Wins with {} points and {} collisions" .format(score_b, b_collisions)) 
             #Keep count of games won
+            player_a_scores_exists = path.exists("player_a_scores.pickle")          
+            if not player_a_scores_exists:
+                pickle_out_a = open("player_a_scores.pickle","wb")
+                player_a_scores = 0
+                pickle.dump(player_a_scores,pickle_out_a)
+                pickle_out_a.close()
             player_b_scores_exists = path.exists("player_b_scores.pickle")
             if not player_b_scores_exists:
                 pickle_out_b = open("player_b_scores.pickle","wb")
