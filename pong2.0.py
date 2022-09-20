@@ -1,5 +1,5 @@
-# Pong Remixed
-#Python 3
+#Pong Remixed
+#Python 3*
 
 import time
 import turtle
@@ -7,6 +7,8 @@ import keyboard
 import random
 import pickle
 from playsound import playsound
+import os.path
+from os import path
 
 #Window specs & info
 wn = turtle.Screen()
@@ -54,7 +56,6 @@ ball_reset_dy = .35  # <--zcontrol-a3-- (Reset) Ball's LEFT/RIGHT, HORIZONTAL, X
 ball_reset_dx_player_a = .35  # <--zcontrol-a4-- (Reset Player A) Ball's UP/DOWN, VERTICAL, Y AXIS speed
 ball_reset_dx_player_b = -.35  # <--zcontrol-a5-- (Reset Player B) Ball's UP/DOWN, VERTICAL, Y AXIS speed ***Negative so if Player score it goes toward other player's goal
 
-
 #Pen
 pen = turtle.Turtle()
 pen.speed(0)
@@ -75,7 +76,6 @@ center_court.penup()
 center_court.goto(point1)
 center_court.pendown()
 center_court.goto(point2)
-
 
 #Paddle A functions
 def paddle_a_up():
@@ -191,14 +191,33 @@ while True:
             wn.clear()
             wn.bgcolor("red")
             playsound('sounds/game_finish.mp3', block=False)
-            pen.goto(0, 160)
-            pen.goto(0, 160)
-            pen.write("Player A Wins with:" .format(score_a, a_collisions), align="center", font=("lato", 32, "normal"))
-            pen.goto(0, 100)
-            pen.write("{} points" .format(score_a), align="center", font=("lato", 32, "normal"))
-            pen.goto(0, 40)
-            pen.write("You hit the ball {} time(s) " .format(a_collisions), align="center", font=("lato", 32, "normal"))
+            pen.goto(0, 220)
+            pen.write("Player A Wins!" .format(score_a, a_collisions), align="center", font=("lato", 32, "normal"))
+            pen.goto(0, 120)
+            pen.write("With {} hits " .format(a_collisions), align="center", font=("lato", 32, "normal"))
             print("Player A Wins with {} points and {} collisions" .format(score_a, a_collisions))
+            #Keep count of games won
+            player_a_scores_exists = path.exists("player_a_scores.pickle")
+            if not player_a_scores_exists:
+                pickle_out = open("player_a_scores.pickle","wb")
+                player_a_scores = 0
+                pickle.dump(player_a_scores,pickle_out)
+                pickle_out.close()
+            #Bring in Player B's score for final game stats
+            pickle_in_b = open("player_b_scores.pickle","rb")            
+            player_b_scores = pickle.load(pickle_in_b)
+            #Increment++ game wins by 1 for Player A            
+            pickle_in_a = open("player_a_scores.pickle","rb")
+            player_a_scores = pickle.load(pickle_in_a)
+            player_a_scores += 1
+            pickle_out = open("player_a_scores.pickle","wb")
+            pickle.dump(player_a_scores,pickle_out)
+            pickle_out.close()
+            print(player_a_scores)
+            pen.goto(0, -20)
+            pen.write("Player A has won {} time(s) " .format(player_a_scores), align="center", font=("lato", 32, "normal"))
+            pen.goto(0, -80)
+            pen.write("Player B has won {} time(s) " .format(player_b_scores), align="center", font=("lato", 32, "normal"))
             time.sleep(3)
             break
 
@@ -225,13 +244,33 @@ while True:
             wn.clear()
             wn.bgcolor("orange")
             playsound('sounds/game_finish.mp3', block=False)
-            pen.goto(0, 160)
-            pen.write("Player B Wins with:" .format(score_b, b_collisions), align="center", font=("lato", 32, "normal"))
-            pen.goto(0, 100)
-            pen.write("{} points" .format(score_b), align="center", font=("lato", 32, "normal"))
-            pen.goto(0, 40)
-            pen.write("You hit the ball {} time(s) " .format(b_collisions), align="center", font=("lato", 32, "normal"))
-            print("Player B Wins with {} points and {} collisions" .format(score_b, b_collisions))
+            pen.goto(0, 220)
+            pen.write("Player B Wins!" .format(score_b, b_collisions), align="center", font=("lato", 32, "normal"))
+            pen.goto(0, 120)
+            pen.write("with {} hit(s) " .format(b_collisions), align="center", font=("lato", 32, "normal"))
+            print("Player B Wins with {} points and {} collisions" .format(score_b, b_collisions)) 
+            #Keep count of games won
+            player_b_scores_exists = path.exists("player_b_scores.pickle")
+            if not player_b_scores_exists:
+                pickle_out_b = open("player_b_scores.pickle","wb")
+                player_b_scores = 0
+                pickle.dump(player_b_scores,pickle_out_b)
+                pickle_out_b.close()
+            #Bring in Player A's score for final game stats
+            pickle_in_a = open("player_a_scores.pickle","rb")            
+            player_a_scores = pickle.load(pickle_in_a)
+            #Increment++ game wins by 1 for Player B
+            pickle_in_b = open("player_b_scores.pickle","rb")
+            player_b_scores = pickle.load(pickle_in_b)            
+            player_b_scores += 1
+            pickle_out_b = open("player_b_scores.pickle","wb")
+            pickle.dump(player_b_scores,pickle_out_b)
+            pickle_out_b.close()
+            print(player_b_scores)
+            pen.goto(0, -20)
+            pen.write("Player A has won {} time(s) " .format(player_a_scores), align="center", font=("lato", 32, "normal"))
+            pen.goto(0, -80)
+            pen.write("Player B has won {} time(s) " .format(player_b_scores), align="center", font=("lato", 32, "normal"))
             time.sleep(3)
             break
 
