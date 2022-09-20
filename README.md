@@ -51,6 +51,9 @@ zcontrol-a5 <br />
 Number of rounds until game completion <br />
 Using ctrl+f/cmd+f search for the commented "zcontrol-b2" and "zcontrol-b3" in the program. Currently set for 3 rounds. Output of winner displayed on screen as well as sent to console.
 
+Reset game wins <br />
+To reset the game win counter that is displayed at the end of the game, delete both .PICKLE files in root directory. 
+
 ## Updates Added: <br />
 
 -Super attack (Player can automatically return the ball chaotically) - Current odds of cast are 1/15 <br />
