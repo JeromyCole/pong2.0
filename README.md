@@ -1,5 +1,7 @@
 # Pong 2.0 (Warning: Flashing lights)
 
+#Important: If ball speed is too slow/fast, read below on how to fix.
+
 ## Controls
 ### Player A:
 
@@ -83,7 +85,9 @@ Using ctrl+f/cmd+f search for the commented "zcontrol-b2" and "zcontrol-b3" in t
 
 -Sound effects added for nuclear attacks
 
--Sound effect added for game finish
+-Sound effects added for game finish
+
+-Keeps lifetime count of player wins via serialization/pickling.
 
 Updates Coming:
 
@@ -93,7 +97,6 @@ Updates Coming:
 
 -Give option to choose screen color (along with screen size) lay on white screen (instead of black).
 
--Add serialization for keeping count of wins in separate file.
 
 *Turtle run Pong game that's been heavily remixed and improved upon in some areas*
 *Sounds from Zapsplat.com*
