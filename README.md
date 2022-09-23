@@ -62,6 +62,8 @@ To reset the game win counter that is displayed at the end of the game, delete b
 
 -When ball collides with paddle, ball's returning y axis is now random
 
+-Ball X and Y axis are both random at start
+
 -Start up screen with countdown
 
 -Ball now momentarily squishes when it hits a paddle
@@ -90,7 +92,7 @@ To reset the game win counter that is displayed at the end of the game, delete b
 
 -Sound effects added for game finish
 
--Keeps lifetime count of player wins via serialization/pickling.
+-Keeps lifetime count of player wins via serialization/pickling
 
 Updates Coming:
 
@@ -99,6 +101,8 @@ Updates Coming:
 -Give option for different window sizes. Maybe 1 60% larger and another at a large 16:9 ratio. All elements would need pushed out to new positions, adjust target areas, add option to startup screen (before countdown) to choose screen size.
 
 -Give option to choose screen color (along with screen size) lay on white screen (instead of black).
+
+-Sync game speed with a constant of some sort. The system clock?
 
 
 *Turtle run Pong game that's been heavily remixed and improved upon in some areas*

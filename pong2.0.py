@@ -50,11 +50,11 @@ ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.40  # <--zcontrol-a1-- Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed
+ball.dx = 0.45  # <--zcontrol-a1-- Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed
 ball.dy = -0.35 # <--zcontrol-a2-- Ball's UP/DOWN, VERTICAL, Y AXIS speed
 ball_reset_dy = .35  # <--zcontrol-a3-- (Reset) Ball's LEFT/RIGHT, HORIZONTAL, X AXIS speed
-ball_reset_dx_player_a = .35  # <--zcontrol-a4-- (Reset Player A) Ball's UP/DOWN, VERTICAL, Y AXIS speed
-ball_reset_dx_player_b = -.35  # <--zcontrol-a5-- (Reset Player B) Ball's UP/DOWN, VERTICAL, Y AXIS speed ***Negative so if Player score it goes toward other player's goal
+ball_reset_dx_player_a = .42  # <--zcontrol-a4-- (Reset Player A) Ball's UP/DOWN, VERTICAL, Y AXIS speed
+ball_reset_dx_player_b = -.42  # <--zcontrol-a5-- (Reset Player B) Ball's UP/DOWN, VERTICAL, Y AXIS speed ***Negative so if Player score it goes toward other player's goal
 
 #Pen
 pen = turtle.Turtle()
@@ -204,7 +204,7 @@ while True:
             pen.goto(0, 120)
             pen.write("With {} hits " .format(a_collisions), align="center", font=("lato", 32, "normal"))
             print("Player A Wins with {} points and {} collisions" .format(score_a, a_collisions))
-            #Keep count of games won
+            #Keep count of games won via pickling
             player_a_scores_exists = path.exists("player_a_scores.pickle")          
             if not player_a_scores_exists:
                 pickle_out_a = open("player_a_scores.pickle","wb")
@@ -263,7 +263,7 @@ while True:
             pen.goto(0, 120)
             pen.write("With {} hit(s) " .format(b_collisions), align="center", font=("lato", 32, "normal"))
             print("Player B Wins with {} points and {} collisions" .format(score_b, b_collisions)) 
-            #Keep count of games won
+            #Keep count of games won via Pickling
             player_a_scores_exists = path.exists("player_a_scores.pickle")          
             if not player_a_scores_exists:
                 pickle_out_a = open("player_a_scores.pickle","wb")
