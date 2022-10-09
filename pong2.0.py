@@ -1,5 +1,5 @@
-#Pong Remixed
-#Python 3*
+#Pong Remix
+#Python 3 Required
 
 import time
 import turtle
