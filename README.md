@@ -1,6 +1,6 @@
 # Pong 2.0 (Warning: Flashing lights)
 
-#IMPORTANT: If ball speed is too slow/fast, read below on how to fix.
+#IMPORTANT: If ball speed is too slow/fast, read directions below on how to fix.
 
 ## Controls
 ### Player A:
